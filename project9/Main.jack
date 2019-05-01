@@ -1,0 +1,15 @@
+/**
+ * The main program for running the game.
+ * Creates a Biker Game instance and runs it.
+ */
+class Main {
+	/** Main func. */
+    function void main()
+    {
+		var BikerGame game;
+		do BikerGame.newInstance();
+		let game = BikerGame.getInstance();
+		do game.run();
+		return;
+    }
+}

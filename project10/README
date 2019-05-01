@@ -1,0 +1,23 @@
+arbel_amir, alonemanuel
+===============================================================================
+Arbel Amir, ID 201602109, arbel.amir@mail.huji.ac.il
+Alon Emanuel, ID 205894058, Alon.Derfner@mail.huji.ac.il
+===============================================================================
+
+                           Project 10 - Jack Compiler pt. 1
+                           -----------------------
+
+
+Submitted Files
+---------------
+JackAnalyzer.py - the main module for compiling jack files.
+CompilationEngine.py - handles the actual compilation of the files.
+JackTokenizer.py - handles the processing of single tokens.
+JackAnalyzer - executes the compiling of .jack files
+Makefile
+README - this file.
+
+Remarks
+-------
+
+

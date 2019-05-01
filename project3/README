@@ -1,0 +1,31 @@
+arbel_amir, alonemanuel
+===============================================================================
+Arbel Amir, ID 201602109, arbel.amir@cs.huji.ac.il
+Lisa Simpson, ID 205894058, Alon.Derfner@cs.huji.ac.il
+===============================================================================
+
+                           Project 03 - An HDL Files
+                           ----------------------- 
+  
+
+Submitted Files
+---------------
+README - This file.
+Bit.hdl - The Bit chip
+PC.hdl - The PC chip
+RAM8.hdl - The RAM8 chip
+RAM64.hdl - The RAM64 chip
+Register.hdl - The Register chip
+RAM4K.hdl - the RAM4k chip
+RAM16K.hdl - the RAM16K chip
+RAM512.hdl - the RAM512 chip
+
+Additional Chips:
+
+Ass.hdl - an Assignment Chip
+Ass16.hdl - a 16-Bus Assignment chip
+
+Remarks
+-------
+* The chip was actually implemented by simply using an Nand chip. cool!
+

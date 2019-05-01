@@ -1,0 +1,22 @@
+CHIP ShiftRight{
+     IN in[16];
+     OUT out[16];
+   
+     PARTS:
+     Ass (in=in[15],out=out[14]);
+     Ass (in=in[14],out=out[13]);
+     Ass (in=in[13],out=out[12]);
+     Ass (in=in[12],out=out[11]);
+     Ass (in=in[11],out=out[10]);
+     Ass (in=in[10],out=out[9]);
+     Ass (in=in[9],out=out[8]);
+     Ass (in=in[8],out=out[7]);
+     Ass (in=in[7],out=out[6]);
+     Ass (in=in[6],out=out[5]);
+     Ass (in=in[5],out=out[4]);
+     Ass (in=in[4],out=out[3]);
+     Ass (in=in[3],out=out[2]);
+     Ass (in=in[2],out=out[1]);
+     Ass (in=in[1],out=out[0]);
+     Ass (in=in[15] ,out=out[15]);
+}

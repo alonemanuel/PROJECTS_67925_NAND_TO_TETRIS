@@ -1,0 +1,178 @@
+/**
+ * A graphical road. Characterized by a screen location and distance of 
+ * last destination. Has methods for drawing, erasing and moving on the screen.
+ * The road is displayed as bunch of pixles rectangle. 
+ */
+class Road {
+
+    field int floorY;
+	
+    field int numOfLines;
+    field Array lines;
+    
+    field Cloud cloud1;
+    field Cloud cloud2;
+    field Cloud cloud3;
+    field Cloud cloud4;
+    field Cloud cloud5;
+    field Cloud cloud6;
+	
+    field Obstacle obst;   
+
+    /** Constructs a new road. */
+    constructor Road new() {   	
+	let floorY = 190;
+	let numOfLines = 10;
+	let lines = Array.new(10);
+	
+	let lines[0] = Line.new(490,210,15);
+	let lines[1] = Line.new(235,195,17);
+	let lines[2] = Line.new(280,215,13);
+	let lines[3] = Line.new(10,202,21);
+	let lines[4] = Line.new(320,192,5);
+	let lines[5] = Line.new(200,242,30);
+	let lines[6] = Line.new(100,237,74);
+	let lines[7] = Line.new(450,251,12);
+	let lines[8] = Line.new(370,243,10);
+	let lines[9] = Line.new(320,240,10);
+	
+	let cloud1 = Cloud.new(490, 10);
+	let cloud2 = Cloud.new(6, 25);
+	let cloud3 = Cloud.new(280, 50);
+	let cloud4 = Cloud.new(110, 3);
+	let cloud5 = Cloud.new(76, 61);
+	let cloud6 = Cloud.new(345, 30);
+	
+	let obst = Obstacle.new();
+	do show();
+	return this;
+    }
+
+    /** Deallocates the Road's memory. */
+    method void dispose() {
+	do disposeAllLines();
+	do obst.dispose();
+	do cloud1.dispose();
+	do cloud2.dispose();
+	do cloud3.dispose();
+	do cloud4.dispose();
+	do cloud5.dispose();
+	do cloud6.dispose();
+        do Memory.deAlloc(this);
+        return;
+    }
+
+    method void disposeAllLines(){
+	var int lineCounter;
+	var Line currLine;
+	let lineCounter = 0;
+	while (lineCounter < numOfLines) {
+	    let currLine = lines[lineCounter];
+	    do currLine.dispose();
+	    let lineCounter = lineCounter + 1;
+	}
+	do lines.dispose();
+	return;
+    }
+
+    /** Shows the road. */
+    method void show() {
+        do Screen.setColor(true);
+        do draw();
+        return;
+    }
+
+    /** Hides the road. */
+    method void hide() {
+        do Screen.setColor(false);
+	do draw();
+        return;
+    }
+
+    /** Draws the road. */
+    method void draw() 
+    {
+	do drawAllLines();
+	do cloud1.draw();
+	do cloud2.draw();
+	do cloud3.draw();
+	do cloud4.draw();
+	do cloud5.draw();
+	do cloud6.draw();
+	
+	if(obst.isExists())
+	    { do obst.draw();}	
+	    return;
+    }
+
+    method void drawAllLines()
+    {
+	var int lineCounter;
+	var Line currLine;
+	let lineCounter = 0;
+	while (lineCounter < numOfLines) 
+	{
+	    let currLine = lines[lineCounter];
+	    do currLine.draw();
+	    let lineCounter = lineCounter + 1;
+	}
+	// draw the floor line
+	do Screen.drawLine(0,floorY,511,floorY);
+	return;
+    }
+    method void moveAllLines()
+    {
+	var int lineCounter;
+	var Line currLine;
+	let lineCounter = 0;
+	while (lineCounter < numOfLines) 
+	{
+	    let currLine = lines[lineCounter];
+	    do currLine.move();
+	    let lineCounter = lineCounter + 1;
+	}
+
+	// redraw the floor line to fix bikes corruption.
+	do Screen.drawLine(0,floorY,511,floorY);
+	return;
+    }
+
+    /**
+     * Moves the road one unit towards .
+     */
+    method void move() {
+    	do moveAllLines();
+	do cloud1.move();
+	do cloud2.move();
+	do cloud3.move();
+	do cloud4.move();
+	do cloud5.move();
+	do cloud6.move();
+	
+	if (obst.isExists())
+	{
+	    do obst.move();
+	}
+	else 
+	{ 
+	    do createObstacle();
+	}
+	return;
+    }
+
+    /** Creates obstacle. */
+    method void createObstacle() {
+	do obst.create();
+	return;
+    }
+
+    /** Returns true iff obstacle hit the coordinates. */
+    method boolean isHit(int leftX,int topY,int rightX,int floorY) 
+    {
+	if(obst.isExists())
+	{
+	    return ((rightX = obst.getLeftX()) & (topY+16) > obst.getTopY());
+	}
+	return false;
+    }
+}

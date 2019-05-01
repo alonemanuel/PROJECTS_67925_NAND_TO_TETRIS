@@ -1,0 +1,83 @@
+/**
+ * Represents a Biker game.
+ * Controls everything from running the game and storing graphics on it.
+ */
+class BikerGame {
+
+    static BikerGame instance; 	// the singelton, a Biker game instance     
+    field Bike bike;            // the bike
+    field Road road;		// the road
+    field boolean exit;       	// true when the game is over
+
+    /** Constructs a new Biker game. */
+    constructor BikerGame new() {
+	do Screen.clearScreen();
+        let bike = Bike.new(71, 174);	// sets bike at appropriate pos
+	let road = Road.new();			
+	let exit = false;
+        return this;
+    }
+
+    /** Deallocates the object's memory. */
+    method void dispose() {
+        do bike.dispose();
+	do road.dispose();
+        do Memory.deAlloc(this);
+        return;
+    }
+
+    /** Creates an instance of Biker game, and stores it. */
+    function void newInstance() {
+        let instance = BikerGame.new();
+        return;
+    }
+    
+    /** Returns the single instance of this Pong game. */
+    function BikerGame getInstance() {
+        return instance;
+    }
+	
+    /** Prints appropriate message to screen. */
+    method void gameOver() {
+	    do Output.moveCursor(10,27);
+	    do Output.printString("Game Over");
+	    return;
+    }
+	
+    /** Starts the game, and handles inputs from the user that control
+     *  the Bikers' jump. */
+    method void run() {
+        var char key;		// input key from user
+	var int location;	// location of the bike
+	do bike.drawBike();	// put bike on screen
+	do road.draw();		// put road on screen
+	
+	while(~exit)
+	{
+	    do road.move();	// start moving road
+	    do bike.move();	// move bike					
+    	    // if bike is hit by obstacle
+	    if (road.isHit(bike.getTopLX(), bike.getTopLY(), bike.getBottRX(), bike.getBottRY()))
+	    {
+		do gameOver();
+		let exit = true;
+	    }
+	    
+	    if (key = 140) 
+	    {					// if key = ESC
+		let exit = true;
+	    }
+	    else 
+	    {
+		if (key = 131) 
+		{				// if key = UP
+		    do bike.upPressed();
+		}
+	    }
+	    do Sys.wait(1);			// wait for next input
+	    let key = Keyboard.keyPressed();	// re-acquire input
+	}
+	do gameOver();
+        return;
+    }
+}

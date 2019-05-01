@@ -1,0 +1,32 @@
+arbel_amir, alonemanuel
+===============================================================================
+Arbel Amir, ID 201602109, arbel.amir@cs.huji.ac.il
+Lisa Simpson, ID 205894058, Alon.Derfner@cs.huji.ac.il
+===============================================================================
+
+                           Project 01 - An HDL Files
+                           ----------------------- 
+  
+
+Submitted Files
+---------------
+README - This file.
+And.hdl - The And chip
+And16.hdl - The And16 chip
+DMux.hdl - The DMux chip
+DMux4Way.hdl - The DMux4Way chip
+DMux8Way.hdl - The DMux8Way chip
+Mux.hdl - The Mux chip
+Mux4Way16.hdl - The Mux4Way16 chip
+Mux8Way16.hdl - The Mux8Way16 chip
+Mux16.hdl - The Mux16 chip
+Not.hdl - The Not chip
+Not16.hdl - The Not16 chip
+Or.hdl - The Or chip
+Or8Way.hdl - The Or8Way chip
+Or16.hdl - The Or16 chip
+Xor.hdl - The Xor chip
+
+Remarks
+-------
+* The chip was actually implemented by simply using an Nand chip. cool!

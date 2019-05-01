@@ -1,0 +1,20 @@
+arbel_amir, alonemanuel
+===============================================================================
+Arbel Amir, ID 201602109, arbel.amir@cs.huji.ac.il
+Alon Emanuel, ID 205894058, Alon.Derfner@cs.huji.ac.il
+===============================================================================
+
+                           Project 06 - Assembler
+                           -----------------------
+
+
+Submitted Files
+---------------
+README - This file.
+Assembler.py - The Assembler python file
+
+
+Remarks
+-------
+Inside the .py file you can find all classes that follow the interface defined by the NAND book.
+

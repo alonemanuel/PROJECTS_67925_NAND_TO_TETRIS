@@ -1,0 +1,21 @@
+arbel_amir, alonemanuel
+===============================================================================
+Arbel Amir, ID 201602109, arbel.amir@mail.huji.ac.il
+Alon Emanuel, ID 205894058, Alon.Derfner@mail.huji.ac.il
+===============================================================================
+
+                           Project 10 - Jack Compiler pt. 1
+                           -----------------------
+
+
+Submitted Files
+---------------
+jack_compiler.py - the main module for compiling jack files.
+README - this file.
+jack_tokenizer.py - jack tokenizer
+symbol_table.py - the symbol table
+vm_writer.py - writer module
+Makefile
+JackCompiler - executable
+
+

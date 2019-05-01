@@ -1,0 +1,138 @@
+/**
+ * A graphical Bike.
+ * Displayed as a 16-bit bike that has a 
+ * screen location, represented by top-left and bottom-right coordinate.
+ * Has methods for drawing, erasing, moving up and down.
+ */
+class Bike {
+	static int MAX_JUMPING_COUNT;
+	static int JUMPING_PEAK;
+
+    field int topLeftX, topLeftY;           // the bikes's screen location
+	field int bottRightX, bottRightY;
+    field bool isJumping;      				// true iff bike is jumping.
+	field int jumpCounter;
+	field bool isUpPressed;
+
+    /** Constructs a new bike with the given location and width. */
+    constructor Bike new(int Ax, int Ay) {
+	let MAX_JUMPING_COUNT = 60;
+	let JUMPING_PEAK = 30;
+        let topLeftX = Ax;
+        let topLeftY = Ay;
+	let bottRightX = Ax + 16;
+	let bottRightY = Ay + 16;
+
+	let isUpPressed = false;
+	let jumpCounter = 0;
+        return this;
+    }
+
+    /** Deallocates the object's memory. */
+    method void dispose() {
+        do Memory.deAlloc(this);
+        return;
+    }
+
+	/** Returns the bike's top-left X coordinate. */
+    method int getTopLX() {
+        return topLeftX;
+    }
+	
+    /** Returns the bike's top-left Y coordinate. */
+    method int getTopLY() {
+	return topLeftY;
+    }
+	
+    /** Returns the bike's bottom-right X coordinate. */
+    method int getBottRX() {
+	return bottRightX;
+    }
+	
+    /** Returns the bike's bottom-right Y coordinate. */
+    method int getBottRY() {
+	return bottRightY;
+    }
+
+    /** Moves the bike object according to its coordinates and jumping status. */
+    method void move() {
+	if ((jumpCounter > 0) & (jumpCounter < (JUMPING_PEAK + 1))) {
+	    do eraseBike();
+	    let topLeftY = topLeftY - 3;
+	    let jumpCounter = jumpCounter + 1;
+	}
+	else {
+	    if ((jumpCounter > JUMPING_PEAK) & (jumpCounter < (MAX_JUMPING_COUNT + 1))) {
+		do eraseBike();
+		let topLeftY = topLeftY + 3;
+		let jumpCounter = jumpCounter + 1;
+	    }
+	    if (jumpCounter > MAX_JUMPING_COUNT) {
+		let jumpCounter = 0;
+		let isUpPressed = false;
+	    }
+	}
+	do drawBike();
+	return;
+	
+    }
+    
+    /** Controls and sets bikes status after up button is pressed. */
+    method void upPressed() {
+	if (isUpPressed = false) {
+	    let jumpCounter = 1;
+	    let isUpPressed = true;
+	}
+	return;
+    }
+	
+    /** Draws a 16-bit bike on the screen. */
+    method void drawBike() {
+	var int location;
+	var int memAddress;
+	let location = Math.multiply(topLeftY, 32) + (topLeftX/16);
+	let memAddress = 16384 + location;
+	do Memory.poke(memAddress + 0, 480);
+	do Memory.poke(memAddress + 32, 480);
+	do Memory.poke(memAddress + 64, 480);
+	do Memory.poke(memAddress + 96, 12768);
+	do Memory.poke(memAddress + 128, 24768);
+	do Memory.poke(memAddress + 160, -4160);
+	do Memory.poke(memAddress + 192, -17981);
+	do Memory.poke(memAddress + 224, 7679);
+	do Memory.poke(memAddress + 256, 16382);
+	do Memory.poke(memAddress + 288, 12280);
+	do Memory.poke(memAddress + 320, 4088);
+	do Memory.poke(memAddress + 352, -1825);
+	do Memory.poke(memAddress + 384, -1889);
+	do Memory.poke(memAddress + 416, -9829);
+	do Memory.poke(memAddress + 448, -1121);
+	do Memory.poke(memAddress + 480, -2017);
+	return;
+    }
+    
+    /** Erases a 16-bit bike from the screen. */
+    method void eraseBike() {
+	var int location;
+	var int memAddress;
+	let location = Math.multiply(topLeftY, 32) + (topLeftX/16);
+	let memAddress = 16384 + location;
+	do Memory.poke(memAddress + 0, 0);
+	do Memory.poke(memAddress + 32, 0);
+	do Memory.poke(memAddress + 64, 0);
+	do Memory.poke(memAddress + 96, 0);
+	do Memory.poke(memAddress + 128, 0);
+	do Memory.poke(memAddress + 160, 0);
+	do Memory.poke(memAddress + 192, 0);
+	do Memory.poke(memAddress + 224, 0);
+	do Memory.poke(memAddress + 256, 0);
+	do Memory.poke(memAddress + 288, 0);
+	do Memory.poke(memAddress + 320, 0);
+	do Memory.poke(memAddress + 352, 0);
+	do Memory.poke(memAddress + 384, 0);
+	do Memory.poke(memAddress + 416, 0);
+	do Memory.poke(memAddress + 448, 0);
+	do Memory.poke(memAddress + 480, 0);
+	return;
+    }	
+}

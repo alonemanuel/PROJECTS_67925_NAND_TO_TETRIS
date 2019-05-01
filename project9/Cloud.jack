@@ -1,0 +1,98 @@
+/**
+ * A Cloud class. In charge of creating and moving a cloud object.
+ */
+
+class Cloud{
+    field int X, Y; // cloud coordinates
+    field int newX;
+    constructor Cloud new(int startX, int startY) {
+		let X = startX;
+		let newX = 511;
+		let Y = startY;
+		return this;
+    }
+    /** deallocates the cloudes from memory */
+    method void dispose(){
+	do Memory.deAlloc(this);
+	return;
+    }
+
+	/** Draws a cloud. */
+    method void draw(){
+	var int memAddress;
+	var int location;
+	let location = (Y*32) + (X/16);
+	let memAddress = 16384 + location;
+	do Memory.poke(memAddress + 0, 0);
+	do Memory.poke(memAddress + 32, 0);
+	do Memory.poke(memAddress + 64, 1920);
+	do Memory.poke(memAddress + 96, 2112);
+	do Memory.poke(memAddress + 128, 4152);
+	do Memory.poke(memAddress + 160, 4164);
+	do Memory.poke(memAddress + 192, 12418);
+	do Memory.poke(memAddress + 224, 18434);
+	do Memory.poke(memAddress + 256, -32767);
+	do Memory.poke(memAddress + 288, -32767);
+	do Memory.poke(memAddress + 320, -32767);
+	do Memory.poke(memAddress + 352, 32766);
+	do Memory.poke(memAddress + 384, 0);
+	do Memory.poke(memAddress + 416, 0);
+	do Memory.poke(memAddress + 448, 0);
+	do Memory.poke(memAddress + 480, 0);
+	return;
+    }
+	/** Hides a cloud. */
+    method void hide() {
+	var int memAddress;
+	var int location;
+	let location = (Y*32) + (X/16);
+	let memAddress = 16384 + location;
+	do Memory.poke(memAddress + 0, 0);
+	do Memory.poke(memAddress + 32, 0);
+	do Memory.poke(memAddress + 64, 0);
+	do Memory.poke(memAddress + 96, 0);
+	do Memory.poke(memAddress + 128, 0);
+	do Memory.poke(memAddress + 160, 0);
+	do Memory.poke(memAddress + 192, 0);
+	do Memory.poke(memAddress + 224, 0);
+	do Memory.poke(memAddress + 256, 0);
+	do Memory.poke(memAddress + 288, 0);
+	do Memory.poke(memAddress + 320, 0);
+	do Memory.poke(memAddress + 352, 0);
+	do Memory.poke(memAddress + 384, 0);
+	do Memory.poke(memAddress + 416, 0);
+	do Memory.poke(memAddress + 448, 0);
+	do Memory.poke(memAddress + 480, 0);
+	return;
+    }
+
+	/** Shows a cloud. */
+    method void show() {
+	do Screen.setColor(true);
+	do draw();
+	return;
+    }
+
+	/** Moves a cloud. */
+    method void move()
+    {
+	do hide();
+	if (X > 0)
+	// cloud didnt hit the left wall
+	{
+	    let X = X - 1;
+	}
+	else 
+	{   
+	    do resetCloud();
+	}
+	do show();
+	return; 
+    }
+
+    method void resetCloud()
+    {
+	let X = newX;
+	return;
+    }
+}

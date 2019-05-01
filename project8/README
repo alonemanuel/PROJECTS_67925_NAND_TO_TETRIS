@@ -1,0 +1,22 @@
+arbel_amir, alonemanuel
+===============================================================================
+Arbel Amir, ID 201602109, arbel.amir@cs.huji.ac.il
+Alon Emanuel, ID 205894058, Alon.Derfner@cs.huji.ac.il
+===============================================================================
+
+                           Project 07 - VM translator
+                           -----------------------
+
+
+Submitted Files
+---------------
+README - This file.
+CodeWriter.py - The VM translator python file
+VMtranslator - the translator
+Makefile - Used to execute the program.
+
+
+Remarks
+-------
+
+

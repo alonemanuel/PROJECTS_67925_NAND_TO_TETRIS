@@ -1,0 +1,33 @@
+arbel_amir, alonemanuel
+===============================================================================
+Arbel Amir, ID 201602109, arbel.amir@cs.huji.ac.il
+Lisa Simpson, ID 205894058, Alon.Derfner@cs.huji.ac.il
+===============================================================================
+
+                           Project 02 - An HDL Files
+                           ----------------------- 
+  
+
+Submitted Files
+---------------
+README - This file.
+Add.hdl - The Add chip
+Add16.hdl - The And16 chip
+ALU.hdl - The ALU chip
+BusAssignment.hdl - The BusAssignment chip
+FullAdder.hdl - The FullAdder chip
+HalfAdder.hdl - The HalfAdder chip
+Inc16.hdl - The Increment16 chip
+ShiftLeft.hdl - the Shift Left chip
+ShiftRight.hdl - the Shift Right chip
+Or16Way.hdl - the Or16Way chip
+
+Additional Chips:
+
+NegCheck16.hdl - a Negativity Check chip for 16 Bus
+Ass.hdl - a 16-Bus Assignment chip
+
+Remarks
+-------
+* The chip was actually implemented by simply using an Nand chip. cool!
+

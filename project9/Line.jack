@@ -1,0 +1,104 @@
+/**
+ * A Line class. In charge of creating and moving a line object.
+ */
+
+class Line{
+
+    field int X, Y, len, curLen ; // line coordinates
+    field int newX,  tempLineLen;
+    
+    /** Constructor. Gets starting X and starting Y coordinates and length. */
+    constructor Line new(int startX, int startY,int Alen) {
+	let X = startX;
+	let newX = 511;
+	let Y = startY;
+	let len = Alen;
+	let curLen = Alen;
+	let tempLineLen = 0;
+	return this;
+    }
+
+    /** deallocaets the objects memory. */
+    method void dispose(){
+	do Memory.deAlloc(this);
+	return;
+    }
+
+	/** Draws a line. */
+    method void draw(){
+	do Screen.drawLine(X,Y,X+curLen,Y);
+	return;
+    }
+
+	/** Hides a line. */
+    method void hide() {
+	do Screen.setColor(false);
+	do draw();
+	return;
+    }
+
+	/** Shows a line. */
+    method void show() {
+	do Screen.setColor(true);
+	do draw();
+	return;
+    }
+
+	/** Moves a line. */
+    method void move(){
+	do hide();
+	// fitting current line length
+	while ( X + curLen > 511 ) 
+	    {let curLen = curLen - 1;}
+	
+	if (X > 0)
+	// line didnt hit the left wall
+	{
+	    let X = X - 1;
+	    if (curLen < len) 
+	    { 
+	    let curLen = curLen + 1;
+	    }
+	}
+	// treating line entering left wall
+	else 
+	{   
+	    if(curLen > 0)
+	    // also drawing a new line growing from the right wall
+	    {
+	    let curLen = curLen - 1;
+	    do startTempLine();	
+	    }
+	    if (curLen = 0)
+	    // reseting line coordinates
+	    {
+	    do resetLine();
+	    }
+	}
+	do show();
+	return; 
+    }
+
+	/** Resets line to the beginning of screen. */
+    method void resetLine()
+    {
+	do Screen.setColor(false);
+	do Screen.drawLine(newX,Y,newX+tempLineLen,Y);
+	let X = newX;
+	let curLen= tempLineLen;
+	let newX = 511;
+	let tempLineLen = 0;
+	return;
+    }
+
+    method void startTempLine()
+    {
+	do Screen.setColor(false);
+	do Screen.drawLine(newX,Y,newX+tempLineLen,Y);
+	let newX = newX -1;
+	let tempLineLen = tempLineLen + 1;
+	do Screen.setColor(true);
+	do Screen.drawLine(newX,Y,newX+tempLineLen,Y);
+	return;
+    }
+}

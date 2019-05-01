@@ -1,0 +1,13 @@
+CHIP BusAssignment {
+
+    IN  a[16],b[16];
+    OUT out[16];
+
+    PARTS:
+   //And16(a=a,b=b,out=x);
+   //Not(in=x[1],out=notO);
+   //Or16(a[0..14]=x[0..14],a[15]=notO,b=b,out=out);
+   And16(a=a,b=b,out[0..14]=x,out[1]=outA);
+   Not(in=outA,out=notO);
+   Or16(a[0..14]=x,a[15]=notO,b=b,out=out);
+}

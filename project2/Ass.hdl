@@ -1,0 +1,9 @@
+CHIP Ass {
+    IN in;
+    OUT out;
+
+    PARTS:
+   // Put you code here:
+   Not (in=in, out=temp);
+   Not (in=temp, out=out);
+}
